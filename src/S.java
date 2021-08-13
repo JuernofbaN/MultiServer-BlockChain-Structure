@@ -26,7 +26,7 @@ class S {
         serverIPs.add("10.0.2.15");
         serverIPs.add("192.168.56.1");
         indexOfThisServer = serverIPs.indexOf(getLocalIP());
-        //serverIPs.remove(getLocalIP());
+        serverIPs.remove(getLocalIP());
 
         receivedNonce = 0;
         received = false;
