@@ -24,9 +24,9 @@ class S {
         //serverIPs.add("192.168.1.239");
         //serverIPs.add("192.168.1.21");
         serverIPs.add("10.0.2.15");
-        serverIPs.add("192.168.56.1");
+        //serverIPs.add("192.168.56.1");
         indexOfThisServer = serverIPs.indexOf(getLocalIP());
-        serverIPs.remove(getLocalIP());
+        //serverIPs.remove(getLocalIP());
 
         receivedNonce = 0;
         received = false;
@@ -66,24 +66,26 @@ class S {
         try {
             serverSocket = new ServerSocket(5026);
             Socket newSock;
-
+            System.out.println("Server Ips Size : " + serverIPs.size());
             for(int i = 0; i < serverIPs.size(); ++i){
                 newSock = null;
-
+                System.out.println("index of This Server : " + indexOfThisServer);
+                System.out.println("index of my server: " + getLocalIP());
                 if(indexOfThisServer > i){
                     System.out.println("here1");
 
                     newSock = serverSocket.accept();
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
                     sT.start();
-
+                    System.out.println("Here 1 Tamamlandı.");
                     //newSock = new Socket("192.168.1.239", DEFAULT_PORT);
                 }else if(indexOfThisServer < i){
                     System.out.println("here2");
-
+                    System.out.println(serverIPs.get(i) + "Serveriyle bağlantı kurmaya çalışıyorum");
                     newSock = new Socket(serverIPs.get(i), 5026);
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
                     sT.start();
+                    System.out.println("Here2 tamamlandı");
                 }
                 System.out.println("Server connection taraması bitti");
             }
