@@ -9,7 +9,7 @@ public class Blockchain {
 
     private Blockchain() {
         chain = new ArrayList<Block>();
-        this.difficulty = 5;
+        this.difficulty = 6;
         Transaction genTrans = new Transaction("0", "1", "A", 0); // NULL TRANSACTION FOR GENESIS BLOCK
         Block genesisBlock = new Block(genTrans, "0");
         chain.add(genesisBlock);
