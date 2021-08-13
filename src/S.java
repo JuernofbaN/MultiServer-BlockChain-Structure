@@ -21,9 +21,10 @@ class S {
         serverIPs = new ArrayList<>();
         //serverIPs.add("192.168.10.105");
         //serverIPs.add("192.168.10.48");
-        serverIPs.add("192.168.1.239");
-        serverIPs.add("192.168.1.21");
-
+        //serverIPs.add("192.168.1.239");
+        //serverIPs.add("192.168.1.21");
+        serverIPs.add("10.0.2.15");
+        serverIPs.add("192.168.56.1");
         indexOfThisServer = serverIPs.indexOf(getLocalIP());
         //serverIPs.remove(getLocalIP());
 
@@ -84,6 +85,7 @@ class S {
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
                     sT.start();
                 }
+                System.out.println("Server connection taraması bitti");
             }
 
             newSock = null;
