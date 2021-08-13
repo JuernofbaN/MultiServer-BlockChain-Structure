@@ -33,10 +33,10 @@ public class ServerConnectionsThread extends Thread {
                     ps.println("-1");
                 }
                 String str, str1;
-                System.out.println("String bekliyo Diger SErverdan" );
+                //System.out.println("String bekliyo Diger SErverdan" );
 
                 str = br.readLine();
-                System.out.println("String KISMI GEÇTİ" );
+                //System.out.println("String KISMI GEÇTİ" );
 
                 if(!str.equals("-1")){
                         System.out.println("Coming message from another SERVER:" + str);

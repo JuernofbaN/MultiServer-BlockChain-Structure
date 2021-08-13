@@ -76,14 +76,21 @@ class S {
 
                     newSock = serverSocket.accept();
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
+                    System.out.println("here1 Bağlantı sağlandı");
+
                     sT.start();
                     System.out.println("Here 1 Tamamlandı.");
                     //newSock = new Socket("192.168.1.239", DEFAULT_PORT);
                 }else if(indexOfThisServer < i){
                     System.out.println("here2");
                     System.out.println(serverIPs.get(i) + "Serveriyle bağlantı kurmaya çalışıyorum");
-                    newSock = new Socket(serverIPs.get(i), 5026);
+                 //   newSock = new Socket(serverIPs.get(i), 5026);
+                    newSock = new Socket("172.20.10.2", 5026);
+
+                    System.out.println("here2 Bağlantı sağlandı");
+
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
+                    System.out.println("here2 Bağlantı sağlandı");
                     sT.start();
                     System.out.println("Here2 tamamlandı");
                 }
