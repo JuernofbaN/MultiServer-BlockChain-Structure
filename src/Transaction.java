@@ -11,6 +11,9 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public Transaction(){
+
+    }
     public String getFromAddress() {
         return fromAddress;
     }

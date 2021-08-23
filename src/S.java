@@ -23,7 +23,7 @@ class S {
         //serverIPs.add("192.168.10.48");
         //serverIPs.add("192.168.1.239");
         //serverIPs.add("192.168.1.21");
-        serverIPs.add("192.168.10.213");
+        serverIPs.add("172.20.10.6");
         //serverIPs.add("192.168.56.1");
         indexOfThisServer = serverIPs.indexOf(getLocalIP());
         //serverIPs.remove(getLocalIP());
@@ -71,26 +71,20 @@ class S {
                 newSock = null;
                 System.out.println("index of This Server : " + indexOfThisServer);
                 System.out.println("index of my server: " + getLocalIP());
+                indexOfThisServer = 10;
                 if(indexOfThisServer > i){
-                    System.out.println("here1");
+                    System.out.println("here1 bağlantı bekliyor");
 
                     newSock = serverSocket.accept();
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
-                    System.out.println("here1 Bağlantı sağlandı");
-
                     sT.start();
                     System.out.println("Here 1 Tamamlandı.");
                     //newSock = new Socket("192.168.1.239", DEFAULT_PORT);
                 }else if(indexOfThisServer < i){
                     System.out.println("here2");
                     System.out.println(serverIPs.get(i) + "Serveriyle bağlantı kurmaya çalışıyorum");
-                 //   newSock = new Socket(serverIPs.get(i), 5026);
-                    newSock = new Socket("172.20.10.2", 5026);
-
-                    System.out.println("here2 Bağlantı sağlandı");
-
+                    newSock = new Socket(serverIPs.get(i), 5026);
                     ServerConnectionsThread sT = new ServerConnectionsThread(newSock);
-                    System.out.println("here2 Bağlantı sağlandı");
                     sT.start();
                     System.out.println("Here2 tamamlandı");
                 }

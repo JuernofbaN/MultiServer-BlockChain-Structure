@@ -20,6 +20,9 @@ public class Block {
         this.hash = calculateHash();
         this.nonce = (int)(Math.random() * Integer.MAX_VALUE);
     }
+    public Block(){
+
+    }
     public static String getSHA256(String input) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

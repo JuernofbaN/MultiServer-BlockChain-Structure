@@ -36,6 +36,18 @@ public class Blockchain {
         return balance;
     }
 
+    public String getTransactions(String address){
+        String send = "";
+        for(int i = 0; i < chain.size(); i++){
+            if(chain.get(i).getTransaction().toAddress.equals(address) || chain.get(i).getTransaction().fromAddress.equals(address)) {
+                    send = send + chain.get(i).getTransaction().getAmount() + " : " +
+                            chain.get(i).getTransaction().getFromAddress() + " : " +
+                            chain.get(i).getTransaction().getToAddress();
+            }
+        }
+        return send;
+    }
+
     public void addBlock( String fromAd, String toAdd, String token, int amount) throws UnknownHostException {
         Transaction nTran = new Transaction( fromAd,  toAdd, token, amount);
         Block nBlock = new Block(nTran, chain.get(chain.size()-1).hash);
