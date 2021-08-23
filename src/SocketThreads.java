@@ -25,9 +25,14 @@ public class SocketThreads extends Thread{
                 String inputLine = is.readLine();
                 String[] inputStrings = inputLine.split(":"); // String fromAd, String toAdd, String token, int amount
                 if(inputStrings[0].equals("getBalance")){
+                    System.out.println("Getbalance girdi");
                     int balance = bc.getBalance(inputStrings[1], "VCloud");
+                    System.out.println("Input Strings 1 : " + inputStrings[1]);
+                    System.out.println("Getbalance: balance: " + balance);
                     os.println(balance);
                     os.flush();
+                    System.out.println("Yolladı balancei");
+
                 }else if(inputStrings[0].equals("getTransactions")) {
                     String transactions = bc.getTransactions(inputStrings[1]);
                     os.println(transactions);

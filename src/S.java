@@ -23,7 +23,7 @@ class S {
         //serverIPs.add("192.168.10.48");
         //serverIPs.add("192.168.1.239");
         //serverIPs.add("192.168.1.21");
-        serverIPs.add("172.20.10.6");
+        serverIPs.add("172.20.10.2");
         //serverIPs.add("192.168.56.1");
         indexOfThisServer = serverIPs.indexOf(getLocalIP());
         //serverIPs.remove(getLocalIP());
@@ -46,11 +46,15 @@ class S {
     }
 
 
-    public static void main(String[] args) throws UnknownHostException {
+    public static void main(String[] args) throws IOException {
+        ReadWrite rw = new ReadWrite();
+        Blockchain.getInstance();
+        if(!rw.chainFileEmpty()){
+            Blockchain.getChainFromTxt();
+            System.out.println("Chain vardı ve ben chaini yazdım.");
+        }
         S.getInstance();
-        Blockchain bc = Blockchain.getInstance();
         int port = DEFAULT_PORT;
-        ReadWrite rd = new ReadWrite();
 
         if (args.length > 0) {
             try {

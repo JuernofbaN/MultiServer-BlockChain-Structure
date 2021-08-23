@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.time.Instant;
 
 public class Block {
+
 
 
     public String hash;
@@ -41,7 +43,7 @@ public class Block {
         }
     }
 
-    private String getDifficultyString(){
+    private String getDifficultyString() throws IOException {
         String temp = "";
         for(int i=0; i < Blockchain.getInstance().difficulty; ++i)
             temp = temp.concat("0");
@@ -49,7 +51,7 @@ public class Block {
         return temp;
     }
 
-    public void proofOfWork() throws UnknownHostException {
+    public void proofOfWork() throws IOException {
         boolean check = true;
         do{
             if(S.received){
@@ -79,19 +81,29 @@ public class Block {
     public Instant getTimestamp() {
         return timestamp;
     }
-
     public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
     public String getHash() {
         return hash;
     }
-
     public void setHash(String hash) {
         this.hash = hash;
     }
     public Transaction getTransaction() {
         return transaction;
     }
-
+    public void setTransaction(Transaction tran){
+        this.transaction = new Transaction();
+        this.transaction.amount = tran.getAmount();
+        this.transaction.toAddress = tran.getToAddress();
+        this.transaction.fromAddress = tran.getFromAddress();
+        this.transaction.token = tran.getToken();
+    }
+    public String getPreviousHash() {
+        return previousHash;
+    }
+    public void setPreviousHash(String previousHash) {
+        this.previousHash = previousHash;
+    }
 }

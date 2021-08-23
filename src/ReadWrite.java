@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,7 +22,15 @@ public class ReadWrite {
         System.out.println("Successfully wrote to the file.");
     }
 
-    Blockchain readChain() throws IOException{
+    boolean chainFileEmpty(){
+        File file = new File(txtName);
+        if (file.length() == 0)
+            return true;
+        else
+           return false;
+    }
+
+    public void readChain() throws IOException{
         Blockchain bChain = Blockchain.getInstance();
         File myObj = new File(txtName);
         Scanner myReader = new Scanner(myObj);
@@ -29,7 +38,7 @@ public class ReadWrite {
         int indexer = 0;
         String hash = "";
         String prevHash = "";
-        Instant tStamp = null;
+        String tStamp = "";
         String fromAddress = "";
         String toAddress = "";
         String token = "";
@@ -40,36 +49,43 @@ public class ReadWrite {
             if(ctr == 0){
                 // DATA == First block's gen blocks hash key. So we need it.
                 bChain.chain.get(0).hash = data;
-            }else if(ctr > 7){
+            }else if(ctr > 8){
                 if(indexer == 0){
+                    System.out.println("hash = " + data);
                     hash = data;
                 }else if(indexer == 1){
+                    System.out.println("prevhash = " + data);
                     prevHash = data;
                 }else if(indexer == 2){
-                    tStamp = Instant.parse(data);
+                    System.out.println("tstamph = " + data);
+                    tStamp = data;
                 }else if(indexer == 3){
+                    System.out.println("fromaddress = " + data);
                     fromAddress = data;
                 }else if(indexer == 4){
+                    System.out.println("toaddress = " + data);
                     toAddress = data;
                 }else if(indexer == 5){
+                    System.out.println("token = " + data);
                     token = data;
                 }else if(indexer == 6){
+                    System.out.println("amount = " + data);
                     amount = Integer.parseInt(data);
                 }
                 else if(indexer == 7){
+                    System.out.println("nonce = " + data);
                     nonce = Integer.parseInt(data);
                 }
                 indexer++;
                 if(indexer == 8){
                     indexer = 0;
-                    bChain.addBlock(fromAddress, toAddress, token, amount);
-                    bChain.chain.get(bChain.chain.size()-1).nonce = nonce;
+                    bChain.addBlockTxt(prevHash, hash, tStamp, fromAddress, toAddress, token,amount,nonce);
                 }
             }
             ctr++;
         }
         myReader.close();
-        return bChain;
+        return;
     }
 
     void writeBlockChain(Blockchain bChain) throws IOException {
