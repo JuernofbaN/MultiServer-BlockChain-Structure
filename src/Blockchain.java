@@ -59,10 +59,12 @@ public class Blockchain {
     public String getTransactions(String address){
         String send = "";
         for(int i = 0; i < chain.size(); i++){
-            if(chain.get(i).getTransaction().toAddress.equals(address) || chain.get(i).getTransaction().fromAddress.equals(address)) {
-                    send = send + chain.get(i).getTransaction().getAmount() + " : " +
-                            chain.get(i).getTransaction().getFromAddress() + " : " +
-                            chain.get(i).getTransaction().getToAddress();
+            if(chain.get(i).getTransaction().toAddress.contains(address) || chain.get(i).getTransaction().fromAddress.contains(address)) {
+                    send = send + chain.get(i).getTransaction().getAmount() + " / " +
+                            chain.get(i).getTransaction().getFromAddress() + " / " +
+                            chain.get(i).getTransaction().getToAddress()+ " / " +
+                            chain.get(i).getTimestamp() + " /  ";
+                System.out.println("AMOUNT : " + chain.get(i).getTransaction().getAmount());
             }
         }
         return send;

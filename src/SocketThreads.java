@@ -35,6 +35,10 @@ public class SocketThreads extends Thread{
 
                 }else if(inputStrings[0].equals("getTransactions")) {
                     String transactions = bc.getTransactions(inputStrings[1]);
+                    System.out.println(inputStrings[1]);
+                    System.out.println("Yolladı transactionları");
+                    System.out.println(transactions);
+                    System.out.println("********************************************");
                     os.println(transactions);
                     os.flush();
                 }else{

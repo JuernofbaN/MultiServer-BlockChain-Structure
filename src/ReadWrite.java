@@ -78,7 +78,7 @@ public class ReadWrite {
                 }
                 indexer++;
                 if(indexer == 8){
-                    indexer = 0;
+                    indexer = -1;
                     bChain.addBlockTxt(prevHash, hash, tStamp, fromAddress, toAddress, token,amount,nonce);
                 }
             }
